@@ -4,13 +4,7 @@ A standalone, buildless project page following the Nerfies-style layout in hybri
 
 ## Preview
 
-From this repository:
-
-```sh
-python3 -m http.server 8000 --bind 127.0.0.1
-```
-
-Open http://127.0.0.1:8000/.
+View the deployed page at https://helenlu66.github.io/cakedecoration/.
 
 ## Content sources
 
