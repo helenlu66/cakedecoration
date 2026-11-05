@@ -15,16 +15,12 @@
 </head>
 <body>
 <a class="skip-link" href="#overview">Skip to content</a>
-<nav class="top-nav" aria-label="Project navigation">
-  <a href="https://helenlu66.github.io/">← Helen Lu</a>
-  <div><a href="#system">System</a><a href="#study">Study</a><a href="#results">Results</a></div>
-</nav>
 <main>
   <header class="publication-header">
-    <p class="venue">ICSR + AI 2024</p>
     <h1>Towards Human-Robot Co-creative Collaboration Through Interactive Task Dialogue</h1>
-    <p class="authors"><a href="https://helenlu66.github.io/">Hong Lu</a><span>, Jingwen Feng, Emma Bethel,</span><br class="desktop-break"><span> Vasanth Sarathy, Elaine Short, Matthias Scheutz</span></p>
-    <p class="affiliation">Tufts University · Medford, MA, USA</p>
+    <p class="authors"><a href="https://helenlu66.github.io/">Hong Lu</a><span>, Jingwen Feng, Emma Bethel,</span> <span> Vasanth Sarathy, Elaine Short, Matthias Scheutz</span></p>
+    <p class="affiliation">Department of Computer Science, Tufts University, Medford, MA, USA</p>
+    <p class="venue">ICSR + AI 2024</p>
     <div class="publication-links">
       <a class="button" href="https://hrilab.tufts.edu/publications/luetal24icsr.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5"/></svg>Paper</a>
       <a class="button" href="#demo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg>Demo</a>
@@ -39,21 +35,13 @@
   </figure>
 
   <section class="section container prose" id="overview">
-    <h2>Overview</h2>
-    <p>Can a robot do more than follow instructions during a creative task? We explore how interactive task dialogue can support human-robot co-creation, using cake decoration as a shared design activity.</p>
-    <p>Our system connects a GPT-4 dialogue manager to the DIARC cognitive architecture. The robot can place and remove decorations, propose the next move, and explain a suggestion in terms of the customer’s preferences. The human and robot share initiative during ideation, while the robot performs the physical manipulation.</p>
-    <p>We compare three forms of interaction: a robot that only follows commands, one that makes random suggestions, and one that makes task-specific, reasonable suggestions.</p>
+    <h2>Abstract</h2>
+    <p>We investigate how interactive task dialogue supports human-robot creative collaboration in a cake-decoration task. A GPT-4 dialogue system connected to the DIARC cognitive architecture enables a robot to interpret instructions, suggest design choices, explain its reasoning, and physically place decorations. In a within-subject study with 18 participants, we compare a command-following robot with robots that offer random or task-specific suggestions. Participants perceive the robot offering task-specific suggestions as more supportive and intelligent, and prefer it as a partner for a subsequent task.</p>
   </section>
 
   <section class="band" id="demo">
     <div class="container demo-layout">
-      <div class="demo-description">
-        <p class="eyebrow">The interaction</p>
-        <h2>A shared design.<br> A physical result.</h2>
-        <p>The cake is represented as a 4 × 3 grid. Participants communicate through a text interface, asking the robot to add or remove decorations and responding to its ideas.</p>
-        <p>The customer, Jo, likes sweet flavors, wants to try macarons, and prefers blue over red. These preferences give the collaborators a starting point while leaving room for individual design choices.</p>
-        <a class="text-link" href="static/videos/cake-decoration-demo.mp4" download>Download the demo <span aria-hidden="true">↓</span></a>
-      </div>
+      <h2>Video Demonstration</h2>
       <figure class="demo-video">
         <video controls playsinline preload="none" poster="static/images/demo-poster.webp" aria-label="Cake-decoration demonstration showing the text conversation and corresponding robot movements" aria-describedby="demo-caption">
           <source src="static/videos/cake-decoration-demo.mp4" type="video/mp4">
@@ -61,59 +49,59 @@
         </video>
         <figcaption id="demo-caption">A 30-second demonstration of the text dialogue and robot manipulation. The clip has no audio; the conversation is visible in the interface.</figcaption>
       </figure>
+      <div class="demo-description">
+        <p>The cake is represented as a 4 × 3 grid. Participants communicate through a text interface, asking the robot to add or remove decorations and responding to its ideas.</p>
+        <p>The customer, Jo, likes sweet flavors, wants to try macarons, and prefers blue over red. These preferences give the collaborators a starting point while leaving room for individual design choices.</p>
+        <a class="text-link" href="static/videos/cake-decoration-demo.mp4" download>Download the demo <span aria-hidden="true">↓</span></a>
+      </div>
     </div>
   </section>
 
   <section class="section container" id="system">
     <div class="prose">
-      <h2>From dialogue to action</h2>
+      <h2>Dialogue System</h2>
       <p>The dialogue manager uses the conversation history and the robot’s current beliefs about the cake to interpret requests. It distinguishes actions, suggestions, explanations, and requests outside the task. Action goals are sent to DIARC, which executes the manipulation and reports its outcome.</p>
     </div>
-    <ol class="system-steps" aria-label="System workflow">
-      <li><span class="step-number">01</span><h3>Understand</h3><p>Combine human text, conversation history, and the current task state.</p></li>
-      <li><span class="step-number">02</span><h3>Respond</h3><p>Use GPT-4 to interpret an action, generate a suggestion, or give an explanation.</p></li>
-      <li><span class="step-number">03</span><h3>Act &amp; update</h3><p>Execute through DIARC and use the resulting task state in the next turn.</p></li>
-    </ol>
-    <details class="technical-detail">
-      <summary>Explore the dialogue program flow</summary>
-      <figure><img src="static/images/dialogue-flow.webp" alt="Dialogue flow: receive human input, construct a prompt from robot beliefs, classify the request, then execute an action, suggest, explain, or redirect; after an action, alternate between suggesting and asking for the next instruction" loading="lazy"><figcaption>The dialogue program flow from the project manuscript.</figcaption></figure>
-    </details>
+    <figure class="system-figure">
+      <img src="static/images/dialogue-flow.webp" alt="Dialogue program flow: receive human input, construct a prompt from robot beliefs, classify the request, then execute an action, suggest, explain, or redirect. After an action, alternate between suggesting and asking for the next instruction." loading="lazy">
+      <figcaption><strong>From dialogue to action.</strong> Conversation history and the current task state inform each response. The robot alternates between proposing a next action and asking the human what to do.</figcaption>
+    </figure>
+    <figure class="interface-figure">
+      <img src="static/images/text-interface.jpg" width="1600" height="1308" alt="Cake-decoration text interface showing a participant's instructions and the robot's suggestions and action feedback" loading="lazy">
+      <figcaption><strong>The text interface.</strong> Participants instruct the robot, discuss design choices, and accept or reject its suggestions through a shared conversation.</figcaption>
+    </figure>
   </section>
 
-  <section class="band" id="study">
-    <div class="container section-inner">
-      <h2>One task, three robot partners</h2>
+  <section class="section" id="study">
+    <div class="container">
+      <h2>Experimental Conditions</h2>
       <p class="section-intro">A within-subject study: each participant experienced every condition, with the order counterbalanced. The cake was reset between conditions.</p>
-      <div class="conditions">
-        <article><p class="condition-number">01 / No dialogue</p><h3>Follow commands</h3><p>The robot places or removes decorations as requested and reports action status. It offers no suggestions.</p></article>
-        <article><p class="condition-number">02 / Random suggestions</p><h3>Suggest a valid move</h3><p>The robot randomly selects a valid next action and gives a generic justification, alternating suggestions with requests for human input.</p></article>
-        <article><p class="condition-number">03 / Reasonable suggestions</p><h3>Reason about the task</h3><p>The robot proposes an action based on the current cake and Jo’s preferences, explains its reasoning, and asks what the human thinks.</p></article>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison of the three experimental conditions">
+        <table>
+          <thead><tr><th scope="col">Condition</th><th scope="col">Suggestions</th><th scope="col">Justifications</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">No dialogue</th><td>Follows the human’s commands; offers no suggestions.</td><td>Reports only the action status.</td></tr>
+            <tr><th scope="row">Random suggestions</th><td>Randomly selects a valid next action.</td><td>Gives a generic justification.</td></tr>
+            <tr><th scope="row">Reasonable suggestions</th><td>Proposes an action based on the cake and Jo’s preferences.</td><td>Explains the task-specific reasoning and asks for the human’s opinion.</td></tr>
+          </tbody>
+        </table>
       </div>
       <div class="study-measures"><h3>What we measured</h3><p>Creative support · Perceived intelligence · Task satisfaction · User experience · Suggestion rejection · Partner preference · Creative self-efficacy</p></div>
     </div>
   </section>
 
   <section class="section container" id="results">
-    <h2>Task-specific reasoning makes a difference</h2>
-    <div class="results-layout">
-      <div class="preference">
-        <p class="large-stat">17<span>/18</span></p>
-        <h3>chose the reasonable robot</h3>
-        <p>Participants selected a partner for a new cake-decoration scenario.</p>
-        <div class="preference-bar" role="img" aria-label="Partner preference: 17 of 18 reasonable, 1 of 18 random, 0 of 18 no dialogue"><span></span><span></span></div>
-        <p class="legend"><span class="dot reasonable"></span>Reasonable: 17 <span class="dot random"></span>Random: 1</p>
-      </div>
-      <div class="findings">
-        <article><h3>More creative support</h3><p>The reasonable robot received higher creative-support and intelligence ratings than both alternatives.</p></article>
-        <article><h3>A better experience</h3><p>Experience ratings were higher than both alternatives; satisfaction was higher than in the random condition.</p></article>
-        <article><h3>Fewer rejected suggestions</h3><p>Participants rejected suggestions less often in the reasonable condition.</p></article>
-      </div>
+    <h2>Results</h2>
+    <div class="prose results-prose">
+      <p><strong>17 of 18 participants chose the reasonable robot</strong> as their partner for a new cake-decoration scenario. One chose the random robot, and none chose the no-dialogue robot.</p>
+      <p>The reasonable robot received higher creative-support and perceived-intelligence ratings than both alternatives. Participants also rated their experience more positively than with either alternative, and their satisfaction more positively than with the random robot.</p>
+      <p>Participants rejected suggestions less often in the reasonable condition, supporting the value of grounding suggestions in the task and explaining why they fit the design.</p>
     </div>
     <p class="results-note">Study: 18 university students. These findings concern participant perceptions and choices in this task; they do not establish general improvements in creative ability. <a href="https://hrilab.tufts.edu/publications/luetal24icsr.pdf#page=10">See the paper for analyses and statistical comparisons.</a></p>
   </section>
 
-  <section class="band" id="citation">
-    <div class="container section-inner">
+  <section class="section" id="citation">
+    <div class="container">
       <div class="citation-heading"><h2>BibTeX</h2><button id="copy-citation" type="button" hidden>Copy citation</button></div>
       <pre><code id="bibtex">@inproceedings{lu2025cocreative,
   title = {Towards Human-Robot Co-creative Collaboration
@@ -133,6 +121,6 @@
     </div>
   </section>
 </main>
-<footer><p><a href="https://helenlu66.github.io/">Helen Lu</a> · Tufts University</p><p>Layout inspired by <a href="https://helenlu66.github.io/hybridLLMguided/">hybridLLMGuided</a>.</p></footer>
+<footer><p><a href="https://helenlu66.github.io/">Helen Lu</a> · Tufts University</p><p>Website layout adapted from <a href="https://helenlu66.github.io/hybridLLMguided/">hybridLLMGuided</a> and the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies project page</a>.</p></footer>
 </body>
 </html>
