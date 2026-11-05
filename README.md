@@ -1,6 +1,6 @@
 # Cake-decoration research project page
 
-A standalone, buildless project page styled after hybridLLMGuided. A copy is also included in the personal website repository and linked from its ICSR project card.
+A standalone, buildless project page styled after hybridLLMGuided. This is an independent repository, separate from the personal website repository. The personal website links to the project URL; it does not contain the project source.
 
 ## Preview
 
